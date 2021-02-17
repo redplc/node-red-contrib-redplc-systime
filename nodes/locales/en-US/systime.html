@@ -1,0 +1,44 @@
+<!--
+  Copyright 2021 Ocean (iot.redplc@gmail.com).
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/html" data-help-name="systime">
+    <p>redPlc System-Time</p>
+    <h3><b>Input:</b></h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string</span></dt>
+    </dl>
+    <h3><b>Output:</b></h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string</span></dt>
+    </dl>
+    <h3><b>Variable:</b></h3>
+        <dl class="message-properties">
+            <dt>IA </b><i>adr[index]</i> System-Time<span class="property-type">number</span></dt>
+            <dd>Array index 0 <- Seconds (0..59)</dd>
+            <dd>Array index 1 <- Minutes (0..59)</dd>
+            <dd>Array index 2 <- Hours (0..12/23)</dd>
+            <dd>Array index 3 <- AM/PM (0=AM, 1=PM)</dd>
+            <dd>Array index 4 <- Weekday (0=Sunday)</dd>
+            <dd>Array index 5 <- Day (1..31)</dd>
+            <dd>Array index 6 <- Month (1..12)</dd>
+            <dd>Array index 7 <- Year (YYYY)</dd>
+        </dl>
+    <h3><b>Details:</b></h3>
+    <p>
+        Reads system time on payload "input"<br>
+        and stores in global variable as array.<br>
+	</p>
+</script>

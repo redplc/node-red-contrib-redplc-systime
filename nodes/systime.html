@@ -1,0 +1,48 @@
+<!--
+  Copyright 2021 Ocean (iot.redplc@gmail.com).
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('systime', {
+        category: 'redPlc modules',
+        color: 'ORANGE',
+        paletteLabel: 'system time',
+        defaults: {
+            addressai:  { value: 99, required: true, validate: function (v) { return RED.validators.number(v) && (v >= 0) && (v <= 999); } },
+            ampm: { value: false },
+        },
+        inputs: 1,
+        outputs: 1,
+        inputLabels: "in:string",
+        outputLabels: ["out:string"],
+        icon: "font-awesome/fa-clock-o",
+        label: "system-time",
+    });
+</script>
+
+<script type="text/html" data-template-name="systime">
+    <div class="form-row">
+        <label style="width:100%; border-bottom: 1px solid #eee;">redPlc System-Time</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-addressai"><i class="fa fa-list"></i> Address <b>&nbsp;IA<b></label>
+        <input id="node-input-addressai" placeholder="Address" value=99 input type="number" min="0" max="999" required style="width: auto;">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-ampm" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-ampm" style="width: 70%;"> 12-Hours (AM/PM)</label>
+    </div>
+</script>
