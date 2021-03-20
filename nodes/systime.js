@@ -24,45 +24,35 @@ module.exports = function(RED) {
 		RED.nodes.createNode(node, n);
 
 		node.tagnameai = "IA" + n.addressai;
-		
-		node.iserror = false;
+		node.tupdate = n.tupdate;
+  		node.iserror = false;
 		node.setai = false;
 		node.ampm = n.ampm;
-
 		node.store = node.context().global;
 
-		node.statustxt = "";
-
 		function getDateTime() {
-			var d = new Date();
-			var hr = d.getHours();
+			if (node.iserror)
+				return;
+
+			var dt = new Date();
+			var hr = dt.getHours();
 			var ap = (hr >= 12) ? 1 : 0;
 			var hr = (node.ampm) ? hr % 12 : hr;
-			return [d.getSeconds(), d.getMinutes(), hr, ap, d.getDay(), d.getDate(), d.getMonth() + 1, d.getFullYear()];
+			node.store.set(node.tagnameai, [dt.getSeconds(), dt.getMinutes(), hr, ap, dt.getDay(), dt.getDate(), dt.getMonth() + 1, dt.getFullYear()]);
 		}
 
-		if (!node.iserror) {
-			if (typeof node.store.keys().find(key => key == node.tagnameai) !== "undefined")
-				node.iserror = syslib.outError(node, "duplicate " + node.tagnameai, "duplicate address " + node.tagnameai);
-			else {
-				node.store.set(node.tagnameai, getDateTime());
-				node.statustxt = node.tagnameai;
-				node.setai = true;
-			}
+		if (node.store.keys().find(key => key === node.tagnameai) !== undefined)
+			node.iserror = syslib.outError(node, "duplicate " + node.tagnameai, "duplicate address " + node.tagnameai);
+		else {
+			getDateTime();
+			syslib.setStatus(node, node.tagnameai);
+			node.setai = true;
 		}
 
-		if (!node.iserror)
-			syslib.setStatus(node, node.statustxt);
-
-		node.on("input", function (msg) {
-			if (!node.iserror)
-				if (msg.payload === "input")
-					node.store.set(node.tagnameai, getDateTime());
-
-			node.send(msg);
-		});
+		node.id_loop = setInterval(getDateTime, node.tupdate);
 
 		node.on('close', function () {
+			clearInterval(node.id_loop);
 			if (node.setai)
 				node.store.set(node.tagnameai, undefined);
 		});

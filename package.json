@@ -1,7 +1,7 @@
 {
   "name": "node-red-contrib-redplc-systime",
-  "version": "1.0.5",
-  "description": "Node-Red node for System-Time",
+  "version": "1.0.6",
+  "description": "Node-Red node for read System-Time",
 
   "dependencies": {
   },

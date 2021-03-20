@@ -1,23 +1,21 @@
 # node-red-contrib-redplc-systime
 
-Node-Red node for System-Time<br>
+[![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://nodered.org)
+![NPM version](https://badge.fury.io/js/node-red-contrib-redplc-systime.svg)
+![NPM](https://img.shields.io/npm/l/node-red-contrib-redplc-systime)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZDRCZBQFWV3A6)
+
+## Node Features
+
+- Reads System-Time and store in Node-Red global variable as array<br>
+- Update on cycle time interval<br>
 
 ## Install
-
-For using with Ladder-Logic install
-[redPlc](https://www.npmjs.com/package/node-red-contrib-redplc) nodes
-
-For using with other nodes, install
-[module](https://www.npmjs.com/package/node-red-contrib-redplc-module) nodes
 
 Install with Node-Red Palette Manager or npm command:
 ```
 npm install node-red-contrib-redplc-systime
 ```
-
-## Usage
-This node writes to Node-Red global variables<br>
-Update is triggered by redPlc cpu node or module-update node<br>
 
 ### Time/Date Elements (Variable IA):
 |Element|Value|Array-Index|
@@ -31,7 +29,3 @@ Update is triggered by redPlc cpu node or module-update node<br>
 |Month|1 .. 12|6|
 |Year|YYYY|7|
 
-## Donate
-If you like my work please support it with donate:
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZDRCZBQFWV3A6)

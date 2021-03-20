@@ -18,17 +18,18 @@
     RED.nodes.registerType('systime', {
         category: 'redPlc modules',
         color: 'ORANGE',
-        paletteLabel: 'system time',
+        paletteLabel: 'sys time',
         defaults: {
             addressai:  { value: 99, required: true, validate: function (v) { return RED.validators.number(v) && (v >= 0) && (v <= 999); } },
+            tupdate:  { value: 200,  required: true,  validate: function(v) { return RED.validators.number(v) && (v >= 10) && (v <= 10000); } },
             ampm: { value: false },
         },
-        inputs: 1,
-        outputs: 1,
+        inputs: 0,
+        outputs: 0,
         inputLabels: "in:string",
         outputLabels: ["out:string"],
         icon: "font-awesome/fa-clock-o",
-        label: "system-time",
+        label: "sys-time",
     });
 </script>
 
@@ -39,6 +40,11 @@
     <div class="form-row">
         <label for="node-input-addressai"><i class="fa fa-list"></i> Address <b>&nbsp;IA<b></label>
         <input id="node-input-addressai" placeholder="Address" value=99 input type="number" min="0" max="999" required style="width: auto;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-tupdate"><i class="fa fa-refresh"></i> Update</label>
+        <input id="node-input-tupdate" placeholder="Update (ms)" input type="number" min="10" max="10000" required style="width: auto;">
+        <label> ms</label>
     </div>
     <div class="form-row">
         <label>&nbsp;</label>
